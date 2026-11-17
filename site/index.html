@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f3f2eb" />
+    <meta
+      name="description"
+      content="万我工作室游戏展厅：试玩绿野行动、咒野 WILDSPELL 与 Saltline React 版，探索弹弓物理、法术生存与港口射击。用于技术研究与学习实践。"
+    />
+    <title>万我工作室 · 游戏展厅</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#games">跳到游戏目录</a>
+    <header class="site-header page-width">
+      <a class="brand" href="./" aria-label="万我工作室游戏展厅首页">
+        <span class="brand-mark" aria-hidden="true">万</span>
+        <span>万我工作室<span class="brand-caption">游戏展厅</span></span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="#games">游戏作品</a>
+        <a href="https://github.com/ZTaer/ai-game-analysis__saltline"
+          >GitHub <span aria-hidden="true">↗</span></a
+        >
+      </nav>
+    </header>
+
+    <main class="page-width">
+      <section class="intro" aria-labelledby="intro-title">
+        <div>
+          <p class="eyebrow">
+            <span class="status-dot" aria-hidden="true"></span>
+            在浏览器里，玩一点不一样的。
+          </p>
+          <h1 id="intro-title">
+            从绿野弹弓，<br />到雨中港口<span class="title-dot">。</span>
+          </h1>
+        </div>
+        <div class="intro-note">
+          <p>六关弹弓挑战、双季法术远征，<br />与一场港口撤离。</p>
+          <p class="muted">
+            选择一款游戏，直接开始。<br />也可以打开源码，看看它是如何运行的。
+          </p>
+          <a class="text-link" href="#games"
+            >探索三款游戏 <span aria-hidden="true">↓</span></a
+          >
+        </div>
+      </section>
+
+      <section class="games" id="games" aria-labelledby="games-title">
+        <div class="section-heading">
+          <h2 id="games-title">游戏目录</h2>
+          <p>真实游戏画面 <span aria-hidden="true">/</span> 01 — 03</p>
+        </div>
+
+        <article class="game-card birds" aria-labelledby="birds-title">
+          <div class="game-image">
+            <img
+              src="./assets/birds.png"
+              width="1365"
+              height="768"
+              alt="绿野行动主菜单：三只小鸟、山谷中的弹弓与木架里的绿猪"
+              fetchpriority="high"
+            />
+            <div class="image-caption">
+              <span>GREEN VALLEY</span><span>弹弓物理闯关</span>
+            </div>
+          </div>
+          <div class="game-details">
+            <p class="game-index"><span>01</span> 拉弓 · 碰撞 · 连锁破坏</p>
+            <h3 id="birds-title">
+              愤怒的小鸟<span class="game-subtitle">绿野行动</span>
+            </h3>
+            <p class="game-description">
+              拉开弹弓，用红怒、疾风和黑火击破绿猪的防线。在六个关卡里，找准木材、玻璃与石材搭成的结构弱点。
+            </p>
+            <p class="game-features">
+              六个关卡 <span>·</span> 三种小鸟 <span>·</span> 星级挑战
+            </p>
+            <div class="controls">
+              <span class="controls-label">上手操作</span>
+              <p>
+                拖拽小鸟，松手发射；飞行中点击或按
+                <kbd>空格</kbd> 使用技能。支持鼠标与触屏。
+              </p>
+            </div>
+            <div class="game-actions">
+              <a
+                class="play-button"
+                href="./birds/"
+                aria-label="立即试玩愤怒的小鸟：绿野行动"
+                >立即试玩 <span aria-hidden="true">↗</span></a
+              >
+              <a
+                class="source-link"
+                href="https://github.com/ZTaer/ai-game-analysis__saltline/tree/main/saltline_%E6%84%A4%E6%80%92%E7%9A%84%E5%B0%8F%E9%B8%9F"
+                aria-label="查看绿野行动源码"
+                >查看源码 <span aria-hidden="true">↗</span></a
+              >
+            </div>
+          </div>
+        </article>
+
+        <article class="game-card wildspell" aria-labelledby="wildspell-title">
+          <div class="game-image">
+            <img
+              src="./assets/wildspell.png"
+              width="1365"
+              height="768"
+              alt="咒野主菜单：春生之庭的石径、祭坛与开花树木，可选择春季或冬季远征"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="image-caption">
+              <span>WILDSPELL</span><span>俯视角法术生存</span>
+            </div>
+          </div>
+          <div class="game-details">
+            <p class="game-index"><span>02</span> 探索 · 构筑 · 季节守望者</p>
+            <h3 id="wildspell-title">
+              咒野<span class="game-subtitle">WILDSPELL</span>
+            </h3>
+            <p class="game-description">
+              踏入春生之庭与凛冬遗迹，收集灵息、组合自动施放的法术。唤醒三座祭坛，迎战季节守望者，每次远征重新构筑。
+            </p>
+            <p class="game-features">
+              春冬双关 <span>·</span> 法术组合 <span>·</span> Boss 战
+            </p>
+            <div class="controls">
+              <span class="controls-label">上手操作</span>
+              <p>
+                <kbd>WASD</kbd> 移动，<kbd>空格</kbd> 闪避，<kbd>Q</kbd>
+                释放奥术脉冲。移动端使用摇杆与技能按钮。
+              </p>
+            </div>
+            <div class="game-actions">
+              <a
+                class="play-button"
+                href="./wildspell/"
+                aria-label="立即试玩咒野 WILDSPELL"
+                >立即试玩 <span aria-hidden="true">↗</span></a
+              >
+              <a
+                class="source-link"
+                href="https://github.com/ZTaer/ai-game-analysis__saltline/tree/main/saltline_%E5%92%92%E8%AF%AD%E4%B9%90%E5%9B%A2"
+                aria-label="查看咒野源码"
+                >查看源码 <span aria-hidden="true">↗</span></a
+              >
+            </div>
+          </div>
+        </article>
+
+        <article class="game-card saltline" aria-labelledby="saltline-title">
+          <div class="game-image">
+            <img
+              src="./assets/saltline.png"
+              width="1365"
+              height="768"
+              alt="Saltline 标题画面：雨中的集装箱港口、起重机、积水与 Deploy 行动按钮"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="image-caption">
+              <span>SALTLINE</span><span>第一人称港口行动</span>
+            </div>
+          </div>
+          <div class="game-details">
+            <p class="game-index"><span>03</span> 突入 · 切断中继 · 撤离</p>
+            <h3 id="saltline-title">
+              SALTLINE<span class="game-subtitle">React 可维护版</span>
+            </h3>
+            <p class="game-description">
+              穿行雨中的集装箱码头，对抗无人机与机械犬。切断三个中继，抵达船只撤离。本版本保留原作玩法，完成
+              React 工程化重构。
+            </p>
+            <p class="game-features">
+              程序化港口 <span>·</span> 射击与近战 <span>·</span> 撤离任务
+            </p>
+            <div class="controls">
+              <span class="controls-label">上手操作</span>
+              <p>
+                <kbd>WASD</kbd> 移动，鼠标瞄准与射击，<kbd>R</kbd> 换弹，按住
+                <kbd>E</kbd> 切断中继。推荐键鼠游玩。
+              </p>
+            </div>
+            <div class="game-actions">
+              <a
+                class="play-button"
+                href="./saltline/"
+                aria-label="立即试玩 Saltline React 版"
+                >立即试玩 <span aria-hidden="true">↗</span></a
+              >
+              <a
+                class="source-link"
+                href="https://github.com/ZTaer/ai-game-analysis__saltline/tree/main/saltline-fable-5.2-react"
+                aria-label="查看 Saltline React 版源码"
+                >查看源码 <span aria-hidden="true">↗</span></a
+              >
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <aside class="play-note" aria-labelledby="play-note-title">
+        <h2 id="play-note-title">开始之前</h2>
+        <p>
+          首次加载请稍等片刻，点击游戏内的开始按钮后启用声音。手机横屏游玩更舒适；设置与支持保存的关卡进度保存在当前浏览器中。
+        </p>
+      </aside>
+    </main>
+
+    <footer class="site-footer page-width">
+      <div class="footer-heading">
+        <span>万我工作室</span><span>技术研究与学习实践</span>
+      </div>
+      <p>
+        探索程序化内容、游戏交互与物理实现。绿野行动与咒野为独立实现，Saltline
+        为原作的 React
+        工程化重构版；研发与维护范围、参考来源及第三方归属见各项目说明。
+      </p>
+      <div class="footer-bottom">
+        <span>静态托管于 GitHub Pages</span>
+        <a href="https://github.com/ZTaer/ai-game-analysis__saltline"
+          >项目仓库 <span aria-hidden="true">↗</span></a
+        >
+      </div>
+    </footer>
+  </body>
+</html>

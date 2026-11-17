@@ -32,6 +32,9 @@ export function TitleScreen() {
         </p>
       </div>
       <ControlsLegend />
+      <p className="m-studio-credit" lang="zh-CN">
+        万我工作室 · React 工程化重构与维护
+      </p>
     </section>
   );
 }

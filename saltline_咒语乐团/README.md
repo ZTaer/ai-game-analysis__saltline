@@ -2,6 +2,14 @@
 
 一款 React + Three.js 的俯视角法术生存肉鸽 Demo。春生之庭与凛冬遗迹各有完整的探索、成长、祭坛与 Boss 战流程。美术与声音均由代码生成，不依赖远程模型、图片、字体或音频服务。
 
+## 在线试玩
+
+[开始试玩](https://ztaer.github.io/ai-game-analysis__saltline/wildspell/) · [返回三个 Demo 的试玩首页](https://ztaer.github.io/ai-game-analysis__saltline/)
+
+## 研发声明
+
+《咒野 · WILDSPELL》本版本的研发、工程化整理和持续维护由**万我工作室**负责。本项目用于技术研究与学习实践。玩法与氛围参考、独立实现说明及第三方归属保持不变，详见[研发声明](./研发声明.md)。
+
 ## 本地启动
 
 需要 Node.js 20.19+ 或 22.12+。

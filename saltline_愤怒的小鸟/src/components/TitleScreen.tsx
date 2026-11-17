@@ -73,6 +73,7 @@ export default function TitleScreen(props: Props) {
         <span>
           拖拽发射 <i /> 空格释放技能
         </span>
+        <small className="title-credit">万我工作室 · 研发与维护</small>
         <span>六片绿野 · 一场冒险</span>
       </div>
     </section>

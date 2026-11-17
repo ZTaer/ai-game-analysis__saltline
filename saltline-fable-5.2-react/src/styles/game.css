@@ -1130,6 +1130,19 @@ body {
   max-width: 52ch;
 }
 
+.m-studio-credit {
+  /* 使用标题页已有的底部留白，保持原菜单内容与按钮的位置。 */
+  position: absolute;
+  left: max(var(--gl), 5.5vw);
+  right: max(var(--gr), 4.5vw);
+  bottom: calc(var(--sab) + 6px);
+  font: 400 12px/1.3 var(--f-label);
+  letter-spacing: 0.04em;
+  color: var(--bone-dim);
+  overflow-wrap: anywhere;
+  pointer-events: none;
+}
+
 .btn {
   font: 600 15px/1 var(--f-label);
   letter-spacing: 0.22em;

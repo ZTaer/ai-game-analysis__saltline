@@ -532,7 +532,10 @@ export default function App() {
             </span>
           </aside>
           <footer className="title-footer">
-            <span>以四季为卷，以法术为诗。</span>
+            <span className="title-footer-intro">
+              以四季为卷，以法术为诗。
+              <small className="studio-credit">万我工作室 · 研发与维护</small>
+            </span>
             <span>
               WASD 移动 <b>·</b> SPACE 闪避 <b>·</b> Q 奥术脉冲
             </span>

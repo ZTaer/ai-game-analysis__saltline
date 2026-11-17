@@ -2,6 +2,16 @@
 
 React + TypeScript 开发的浏览器弹弓物理游戏。参考 `../saltline-fable-5.2` 的程序化场景与合成音效思路，独立实现二维游戏，不依赖原项目的压缩代码。
 
+## 在线试玩
+
+[开始试玩](https://ztaer.github.io/ai-game-analysis__saltline/birds/) · [返回三个 Demo 的试玩首页](https://ztaer.github.io/ai-game-analysis__saltline/)
+
+## 研发声明
+
+本版本的研发、工程化整理和持续维护由 **万我工作室** 负责，工作范围及参考来源、第三方归属说明见 [研发声明](研发声明.md)。
+
+本项目用于技术研究与学习实践。
+
 ## 开始游戏
 
 需要 Node.js 22.12+（本机已用 Node 24 验证）。

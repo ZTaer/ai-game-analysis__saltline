@@ -118,7 +118,16 @@ test('title, settings, controls, focus and persisted settings match the original
   for (const [name, url] of targets) {
     const { context, page, errors } = await openGame(browser, url);
     await expect(page.locator('.menu')).toHaveAttribute('data-screen', 'title');
-    const title = await page.locator('[data-s="title"]').innerText();
+    const studioCredit = '万我工作室 · React 工程化重构与维护';
+    let title = await page.locator('[data-s="title"]').innerText();
+    if (name === 'react') {
+      await expect(page.locator('.m-studio-credit')).toHaveText(studioCredit);
+      await expect(page.locator('.m-studio-credit')).toBeVisible();
+      // 只移除新增声明及它的段落分隔；其余标题文字和空白仍与原版严格对照。
+      const creditSuffix = `\n\n${studioCredit}`;
+      expect(title.endsWith(creditSuffix)).toBe(true);
+      title = title.slice(0, -creditSuffix.length);
+    }
     await page.locator('[data-s="title"] [data-act="settings"]').click();
     await expect(page.locator('.panel')).toBeVisible();
     await expect(page.locator('.panel')).toBeFocused();
