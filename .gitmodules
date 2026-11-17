@@ -1,0 +1,3 @@
+[submodule "saltline-fable-5.2"]
+	path = saltline-fable-5.2
+	url = https://github.com/realcodebear/saltline-fable-5.2.git
