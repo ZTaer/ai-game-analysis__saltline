@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#f3f2eb" />
     <meta
       name="description"
-      content="万我工作室游戏展厅：试玩绿野行动、咒野 WILDSPELL 与 Saltline React 版，探索弹弓物理、法术生存与港口射击。用于技术研究与学习实践。"
+      content="万我工作室游戏展厅：试玩 Saltline React 版、绿野行动与咒野 WILDSPELL，探索港口射击、弹弓物理与法术生存。用于技术研究与学习实践。"
     />
     <title>万我工作室 · 游戏展厅</title>
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
@@ -35,11 +35,11 @@
             在浏览器里，玩一点不一样的。
           </p>
           <h1 id="intro-title">
-            从绿野弹弓，<br />到雨中港口<span class="title-dot">。</span>
+            从雨中港口，<br />到绿野弹弓<span class="title-dot">。</span>
           </h1>
         </div>
         <div class="intro-note">
-          <p>六关弹弓挑战、双季法术远征，<br />与一场港口撤离。</p>
+          <p>一场港口撤离、六关弹弓挑战，<br />与双季法术远征。</p>
           <p class="muted">
             选择一款游戏，直接开始。<br />也可以打开源码，看看它是如何运行的。
           </p>
@@ -55,6 +55,56 @@
           <p>真实游戏画面 <span aria-hidden="true">/</span> 01 — 03</p>
         </div>
 
+        <article class="game-card saltline" aria-labelledby="saltline-title">
+          <div class="game-image">
+            <img
+              src="./assets/saltline.png"
+              width="1365"
+              height="768"
+              alt="Saltline 标题画面：雨中的集装箱港口、起重机、积水与 Deploy 行动按钮"
+              fetchpriority="high"
+              decoding="async"
+            />
+            <div class="image-caption">
+              <span>SALTLINE</span><span>第一人称港口行动</span>
+            </div>
+          </div>
+          <div class="game-details">
+            <p class="game-index"><span>01</span> 突入 · 切断中继 · 撤离</p>
+            <h3 id="saltline-title">
+              SALTLINE<span class="game-subtitle">React 可维护版</span>
+            </h3>
+            <p class="game-description">
+              穿行雨中的集装箱码头，对抗无人机与机械犬。切断三个中继，抵达船只撤离。本版本保留原作玩法，完成
+              React 工程化重构。
+            </p>
+            <p class="game-features">
+              程序化港口 <span>·</span> 射击与近战 <span>·</span> 撤离任务
+            </p>
+            <div class="controls">
+              <span class="controls-label">上手操作</span>
+              <p>
+                <kbd>WASD</kbd> 移动，鼠标瞄准与射击，<kbd>R</kbd> 换弹，按住
+                <kbd>E</kbd> 切断中继。推荐键鼠游玩。
+              </p>
+            </div>
+            <div class="game-actions">
+              <a
+                class="play-button"
+                href="./saltline/"
+                aria-label="立即试玩 Saltline React 版"
+                >立即试玩 <span aria-hidden="true">↗</span></a
+              >
+              <a
+                class="source-link"
+                href="https://github.com/ZTaer/ai-game-analysis__saltline/tree/main/saltline-fable-5.2-react"
+                aria-label="查看 Saltline React 版源码"
+                >查看源码 <span aria-hidden="true">↗</span></a
+              >
+            </div>
+          </div>
+        </article>
+
         <article class="game-card birds" aria-labelledby="birds-title">
           <div class="game-image">
             <img
@@ -62,14 +112,14 @@
               width="1365"
               height="768"
               alt="绿野行动主菜单：三只小鸟、山谷中的弹弓与木架里的绿猪"
-              fetchpriority="high"
+              loading="lazy"
             />
             <div class="image-caption">
               <span>GREEN VALLEY</span><span>弹弓物理闯关</span>
             </div>
           </div>
           <div class="game-details">
-            <p class="game-index"><span>01</span> 拉弓 · 碰撞 · 连锁破坏</p>
+            <p class="game-index"><span>02</span> 拉弓 · 碰撞 · 连锁破坏</p>
             <h3 id="birds-title">
               愤怒的小鸟<span class="game-subtitle">绿野行动</span>
             </h3>
@@ -118,7 +168,7 @@
             </div>
           </div>
           <div class="game-details">
-            <p class="game-index"><span>02</span> 探索 · 构筑 · 季节守望者</p>
+            <p class="game-index"><span>03</span> 探索 · 构筑 · 季节守望者</p>
             <h3 id="wildspell-title">
               咒野<span class="game-subtitle">WILDSPELL</span>
             </h3>
@@ -146,56 +196,6 @@
                 class="source-link"
                 href="https://github.com/ZTaer/ai-game-analysis__saltline/tree/main/saltline_%E5%92%92%E8%AF%AD%E4%B9%90%E5%9B%A2"
                 aria-label="查看咒野源码"
-                >查看源码 <span aria-hidden="true">↗</span></a
-              >
-            </div>
-          </div>
-        </article>
-
-        <article class="game-card saltline" aria-labelledby="saltline-title">
-          <div class="game-image">
-            <img
-              src="./assets/saltline.png"
-              width="1365"
-              height="768"
-              alt="Saltline 标题画面：雨中的集装箱港口、起重机、积水与 Deploy 行动按钮"
-              loading="lazy"
-              decoding="async"
-            />
-            <div class="image-caption">
-              <span>SALTLINE</span><span>第一人称港口行动</span>
-            </div>
-          </div>
-          <div class="game-details">
-            <p class="game-index"><span>03</span> 突入 · 切断中继 · 撤离</p>
-            <h3 id="saltline-title">
-              SALTLINE<span class="game-subtitle">React 可维护版</span>
-            </h3>
-            <p class="game-description">
-              穿行雨中的集装箱码头，对抗无人机与机械犬。切断三个中继，抵达船只撤离。本版本保留原作玩法，完成
-              React 工程化重构。
-            </p>
-            <p class="game-features">
-              程序化港口 <span>·</span> 射击与近战 <span>·</span> 撤离任务
-            </p>
-            <div class="controls">
-              <span class="controls-label">上手操作</span>
-              <p>
-                <kbd>WASD</kbd> 移动，鼠标瞄准与射击，<kbd>R</kbd> 换弹，按住
-                <kbd>E</kbd> 切断中继。推荐键鼠游玩。
-              </p>
-            </div>
-            <div class="game-actions">
-              <a
-                class="play-button"
-                href="./saltline/"
-                aria-label="立即试玩 Saltline React 版"
-                >立即试玩 <span aria-hidden="true">↗</span></a
-              >
-              <a
-                class="source-link"
-                href="https://github.com/ZTaer/ai-game-analysis__saltline/tree/main/saltline-fable-5.2-react"
-                aria-label="查看 Saltline React 版源码"
                 >查看源码 <span aria-hidden="true">↗</span></a
               >
             </div>

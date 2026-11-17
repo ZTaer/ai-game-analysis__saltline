@@ -6,6 +6,14 @@
 
 ## 三个游戏
 
+### Saltline · React 可维护版
+
+原 `saltline-fable-5.2` 第一人称射击游戏的 React 工程化重构，目标是保留原版玩法、数值、画面与交互。玩家需要切断三个中继并抵达船只；React 管理应用与菜单，Three.js 游戏模块负责场景、玩家、武器、敌人及音频，配置与启动流程按职责拆分，附有中文维护文档。
+
+[![Saltline · React 可维护版游戏截图](site/assets/saltline.png)](https://ztaer.github.io/ai-game-analysis__saltline/saltline/)
+
+[在线试玩](https://ztaer.github.io/ai-game-analysis__saltline/saltline/) · [项目说明与源码入口](saltline-fable-5.2-react/README.md) · [研发声明](saltline-fable-5.2-react/研发声明.md) · [维护指南](saltline-fable-5.2-react/docs/MAINTENANCE.md)
+
 ### 愤怒的小鸟 · 绿野行动
 
 React + TypeScript 开发的二维弹弓物理游戏，使用 Matter.js 模拟碰撞与结构破坏。包含六个关卡、三种小鸟能力、星级评分与本地进度；场景和角色由 Canvas 绘制，音效由 Web Audio 合成，支持鼠标、键盘和触屏操作。
@@ -21,14 +29,6 @@ React + Three.js 开发的俯视角法术生存肉鸽 Demo。春生之庭与凛�
 [![咒野 · WILDSPELL 游戏截图](site/assets/wildspell.png)](https://ztaer.github.io/ai-game-analysis__saltline/wildspell/)
 
 [在线试玩](https://ztaer.github.io/ai-game-analysis__saltline/wildspell/) · [项目说明与源码入口](saltline_咒语乐团/README.md) · [研发声明](saltline_咒语乐团/研发声明.md)
-
-### Saltline · React 可维护版
-
-原 `saltline-fable-5.2` 第一人称射击游戏的 React 工程化重构，目标是保留原版玩法、数值、画面与交互。玩家需要切断三个中继并抵达船只；React 管理应用与菜单，Three.js 游戏模块负责场景、玩家、武器、敌人及音频，配置与启动流程按职责拆分，附有中文维护文档。
-
-[![Saltline · React 可维护版游戏截图](site/assets/saltline.png)](https://ztaer.github.io/ai-game-analysis__saltline/saltline/)
-
-[在线试玩](https://ztaer.github.io/ai-game-analysis__saltline/saltline/) · [项目说明与源码入口](saltline-fable-5.2-react/README.md) · [研发声明](saltline-fable-5.2-react/研发声明.md) · [维护指南](saltline-fable-5.2-react/docs/MAINTENANCE.md)
 
 ## 项目结构与本地开发
 
@@ -61,9 +61,9 @@ React + Three.js 开发的俯视角法术生存肉鸽 Demo。春生之庭与凛�
 | 页面 | 在线入口 |
 | --- | --- |
 | 试玩首页 | [选择游戏](https://ztaer.github.io/ai-game-analysis__saltline/) |
+| Saltline React | [saltline/](https://ztaer.github.io/ai-game-analysis__saltline/saltline/) |
 | 绿野行动 | [birds/](https://ztaer.github.io/ai-game-analysis__saltline/birds/) |
 | 咒野 | [wildspell/](https://ztaer.github.io/ai-game-analysis__saltline/wildspell/) |
-| Saltline React | [saltline/](https://ztaer.github.io/ai-game-analysis__saltline/saltline/) |
 
 上述链接为发布入口；发布是否完成以 GitHub Actions 工作流结果与实际页面访问为准。原始 `saltline-fable-5.2` 目录保留为对照基准，不作为第四个游戏发布。
 
