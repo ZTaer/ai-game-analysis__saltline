@@ -1,0 +1,118 @@
+import type { SpellId, SpellState, Upgrade } from "./types";
+export const SPELLS: Record<SpellId, Omit<SpellState, "level">> = {
+  bolt: { id: "bolt", name: "星火飞弹", color: "#eac784", icon: "spark" },
+  frost: { id: "frost", name: "霜环", color: "#99e2f5", icon: "snow" },
+  orbit: { id: "orbit", name: "月轮", color: "#c9b0f1", icon: "orbit" },
+  meteor: { id: "meteor", name: "陨星", color: "#ff9369", icon: "flame" },
+  chain: { id: "chain", name: "连锁雷鸣", color: "#a7d9ff", icon: "bolt" },
+  bloom: { id: "bloom", name: "生命绽放", color: "#b4df99", icon: "flower" },
+};
+export const UPGRADES: Upgrade[] = [
+  {
+    id: "bolt",
+    name: "星火协奏",
+    subtitle: "星火飞弹 · 法术强化",
+    description: "额外发射一枚星火；伤害提高 20%。星火穿过敌人，照亮荒野。",
+    icon: "spark",
+    rarity: "普通",
+    color: "#eac784",
+  },
+  {
+    id: "frost",
+    name: "冬之回响",
+    subtitle: "解锁 / 强化 · 霜环",
+    description:
+      "周期释放扩散冰环，伤害并冻结周围敌人。已有霜环时范围与伤害提升。",
+    icon: "snow",
+    rarity: "稀有",
+    color: "#99e2f5",
+  },
+  {
+    id: "orbit",
+    name: "环月之刃",
+    subtitle: "解锁 / 强化 · 月轮",
+    description: "召唤旋转的月刃，持续切割近身敌人。每次强化增加一把月刃。",
+    icon: "orbit",
+    rarity: "稀有",
+    color: "#c9b0f1",
+  },
+  {
+    id: "meteor",
+    name: "坠星预言",
+    subtitle: "解锁 / 强化 · 陨星",
+    description:
+      "在敌群脚下召唤陨星，造成范围伤害和强烈击退。对冻结目标伤害翻倍。",
+    icon: "flame",
+    rarity: "史诗",
+    color: "#ff9369",
+  },
+  {
+    id: "chain",
+    name: "雷鸣织网",
+    subtitle: "解锁 / 强化 · 连锁雷鸣",
+    description: "闪电在多个敌人间弹射。冻结的敌人将额外传导一次雷击。",
+    icon: "bolt",
+    rarity: "稀有",
+    color: "#a7d9ff",
+  },
+  {
+    id: "bloom",
+    name: "生生不息",
+    subtitle: "解锁 / 强化 · 生命绽放",
+    description: "周期恢复生命并释放花瓣冲击。每一级提高治疗量和绽放范围。",
+    icon: "flower",
+    rarity: "稀有",
+    color: "#b4df99",
+  },
+  {
+    id: "power",
+    name: "奥术共鸣",
+    subtitle: "全局 · 伤害",
+    description: "所有法术伤害提高 18%。每一缕微光都将成为燎原之火。",
+    icon: "spark",
+    rarity: "普通",
+    color: "#eac784",
+  },
+  {
+    id: "haste",
+    name: "疾风乐章",
+    subtitle: "全局 · 施法速度",
+    description: "法术冷却缩短 12%，移动速度提高 5%。",
+    icon: "wind",
+    rarity: "普通",
+    color: "#a9d7c6",
+  },
+  {
+    id: "vitality",
+    name: "古树庇佑",
+    subtitle: "生存 · 生命",
+    description: "最大生命增加 25，并立即恢复 35 点生命。",
+    icon: "heart",
+    rarity: "普通",
+    color: "#a9cd8f",
+  },
+  {
+    id: "magnet",
+    name: "引星之力",
+    subtitle: "探索 · 拾取范围",
+    description: "经验拾取范围提高 50%，经验获取提高 12%。",
+    icon: "orbit",
+    rarity: "普通",
+    color: "#d2c4a1",
+  },
+];
+export const DURATION = 240;
+export const STAGES = {
+  spring: {
+    name: "花眠庭院",
+    boss: "荆冠守望者",
+    subtitle: "春 · THE BLOOMING SANCTUM",
+    color: 0xe6b576,
+  },
+  winter: {
+    name: "永霜修道院",
+    boss: "凛冬执钟人",
+    subtitle: "冬 · THE FROZEN CLOISTER",
+    color: 0x92d4f5,
+  },
+};

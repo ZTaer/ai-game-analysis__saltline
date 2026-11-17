@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "passed": 8,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "spells: frost damages and freezes only targets in range",
+      "passed": true,
+      "detail": "28 damage; 2.45s freeze; distant target unaffected"
+    },
+    {
+      "name": "spells: orbit blades rotate and damage on contact",
+      "passed": true,
+      "detail": "16 contact damage; two rotating blades; center target untouched"
+    },
+    {
+      "name": "spells: meteor telegraph and frost double-damage synergy",
+      "passed": true,
+      "detail": "95 normal / 190 frozen impact damage; 0.8s warning respected"
+    },
+    {
+      "name": "spells: chain selects unique targets and gains a frozen jump",
+      "passed": true,
+      "detail": "3 normal / 4 frozen-chain targets; 37 damage per target"
+    },
+    {
+      "name": "spells: bloom heals, damages nearby enemies and respects cooldown",
+      "passed": true,
+      "detail": "7 healing; 42 cumulative nearby damage; cooldown and max-health cap hold"
+    },
+    {
+      "name": "spring: guardian body moves without floor penetration",
+      "passed": true,
+      "detail": "1.60 units toward player; body center y=1.73 for radius 1.45"
+    },
+    {
+      "name": "winter: guardian body moves without floor penetration",
+      "passed": true,
+      "detail": "1.60 units toward player; body center y=1.73 for radius 1.45"
+    },
+    {
+      "name": "lifecycle: actual frames preserve paused time and resume fixed stepping",
+      "passed": true,
+      "detail": "1.5s paused wall time skipped; resumed 0.050s of real simulation"
+    }
+  ],
+  "durationMs": 693
+}

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Runtime lifecycle test fixture</title>
+  </head>
+  <body>
+    <!-- The fixture gives startGame the same DOM contract without mounting App.
+         This exposes the public runtime handle solely to tests, not to players. -->
+    <div id="app">
+      <canvas id="view" tabindex="0"></canvas>
+      <div id="ui"></div>
+      <div id="boot">
+        <div id="boot-msg"></div>
+        <div><i id="boot-fill"></i></div>
+      </div>
+    </div>
+    <script type="module" src="./runtimeHarness.js"></script>
+  </body>
+</html>

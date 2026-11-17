@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.local
+*.log
+*.tsbuildinfo
+.yarn/install-state.gz
+.yarn/unplugged/
+.pnp.*
+.DS_Store

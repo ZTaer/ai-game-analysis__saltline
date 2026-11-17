@@ -1,0 +1,7 @@
+node_modules
+.yarn
+dist
+.analysis
+test-results*
+playwright-report
+package-lock.json
