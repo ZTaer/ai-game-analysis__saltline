@@ -16,7 +16,7 @@ import {
   ShaderMaterial,
   Vector3,
 } from 'three';
-import { createRandom } from '../core/random.js';
+import { createRandom } from '../core/random.ts';
 import { mergeGeometries } from '../core/geometry.js';
 import { createGullModel, createHoundModel } from './models.js';
 import { GULL_TUNING, createGull } from './gull.js';

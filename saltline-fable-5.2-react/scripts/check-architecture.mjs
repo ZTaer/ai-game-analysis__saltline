@@ -1,12 +1,13 @@
 /**
  * 校验源码的本地模块边界：导入目标存在、命名导出存在、依赖图无环。
- * 使用当前 Vite 构建工具链已有的 Rolldown AST 解析器，不新增运行时依赖。
+ * TypeScript 先擦除类型，再用 Rolldown AST 检查实际运行依赖；类型引用由 tsc 检查。
  * 只解析源码，不执行可能创建 DOM、WebGL 或 AudioContext 的模块。
  */
 import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import ts from 'typescript';
 
 const requireFromVite = createRequire(import.meta.resolve('vite'));
 const { parseAst } = await import(pathToFileURL(requireFromVite.resolve('rolldown/parseAst')));
@@ -19,7 +20,8 @@ async function sourceFiles(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
     const filename = path.join(directory, entry.name);
     if (entry.isDirectory()) files.push(...(await sourceFiles(filename)));
-    else if (/\.(?:js|jsx|mjs)$/.test(entry.name)) files.push(filename);
+    else if (/\.(?:js|jsx|mjs|ts|tsx)$/.test(entry.name) && !entry.name.endsWith('.d.ts'))
+      files.push(filename);
   }
   return files.sort();
 }
@@ -39,8 +41,20 @@ function declaredNames(pattern) {
 
 const modules = new Map();
 for (const filename of await sourceFiles(sourceRoot)) {
-  const code = await readFile(filename, 'utf8');
-  const ast = parseAst(code, { lang: filename.endsWith('.jsx') ? 'jsx' : 'js' }, filename);
+  let code = await readFile(filename, 'utf8');
+  if (/\.tsx?$/.test(filename)) {
+    // import type 不参与浏览器执行，不应被误报为运行时循环依赖。
+    code = ts.transpileModule(code, {
+      fileName: filename,
+      compilerOptions: {
+        target: ts.ScriptTarget.ES2022,
+        module: ts.ModuleKind.ESNext,
+        jsx: ts.JsxEmit.Preserve,
+        verbatimModuleSyntax: true,
+      },
+    }).outputText;
+  }
+  const ast = parseAst(code, { lang: /\.[jt]sx$/.test(filename) ? 'jsx' : 'js' }, filename);
   const info = { filename, exports: new Set(), references: [], edges: new Set() };
   for (const node of ast.body) {
     if (node.type === 'ImportDeclaration') {
@@ -81,6 +95,8 @@ for (const filename of await sourceFiles(sourceRoot)) {
   }
   modules.set(filename, info);
 }
+if (!modules.size)
+  throw new Error('No source modules found; check sourceRoot and file extensions.');
 
 for (const info of modules.values()) {
   for (const reference of info.references) {

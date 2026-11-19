@@ -1,22 +1,23 @@
+import type { BootContext, GameHandle } from '../types.ts';
 /**
  * React 与游戏运行时的生命周期边界；每页只保留一个活动实例。
  */
-import { beginResources, releaseGame } from './resources.js';
-import { bootGame } from './bootGame.js';
-import { createBootScreen } from './bootScreen.js';
-import { installDiagnostics } from './diagnostics.js';
-let activeGame = null;
+import { beginResources, releaseGame } from './resources.ts';
+import { bootGame } from './bootGame.ts';
+import { createBootScreen } from './bootScreen.ts';
+import { installDiagnostics } from './diagnostics.ts';
+let activeGame: GameHandle | null = null;
 /**
  * 创建运行句柄。ready 在初始化并安装帧循环后结算，不等待玩家进入任务或全部音效合成。
  * @returns {{ready: Promise<void>, dispose: () => void}}
  */
-export function startGame() {
+export function startGame(): GameHandle {
   activeGame?.dispose();
   const resources = beginResources();
   const originalConsoleError = console.error;
   let disposed = false;
   let bootFinished = false;
-  let context = null;
+  let context: BootContext | null = null;
   const assertActive = () => {
     if (disposed) throw new DOMException('Game unmounted', 'AbortError');
   };

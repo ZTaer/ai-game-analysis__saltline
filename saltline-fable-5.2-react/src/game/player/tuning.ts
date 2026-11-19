@@ -1,9 +1,9 @@
-import { PLAYER_CONFIG } from '../config.js';
+import { PLAYER_CONFIG } from '../config.ts';
 
 /**
  * 玩家手感配置。距离采用游戏世界单位（按米使用），时间为秒，旋转为弧度；
  * fov* 字段的值为角度。运行中的 player.tuning 引用本对象，不创建副本。
- * 调整镜头/碰撞基础尺寸仍从 ../config.js 的 PLAYER_CONFIG 入手。
+ * 调整镜头/碰撞基础尺寸仍从 ../config.ts 的 PLAYER_CONFIG 入手。
  */
 export const PLAYER_TUNING = {
   // 平移速度（米/秒）：普通行走、冲刺、蹲行、瞄准移动。

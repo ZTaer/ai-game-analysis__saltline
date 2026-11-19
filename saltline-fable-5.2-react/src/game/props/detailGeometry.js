@@ -18,7 +18,7 @@ import {
   Vector2,
   Vector3,
 } from 'three';
-import { createRandom } from '../core/random.js';
+import { createRandom } from '../core/random.ts';
 import { cylinderGeometry, mergeColoredGeometries, transformGeometry } from '../core/geometry.js';
 import { PROP_SIZES } from './props.js';
 var At = Math.PI,

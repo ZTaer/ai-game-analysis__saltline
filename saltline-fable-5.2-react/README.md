@@ -1,8 +1,10 @@
-# Saltline · React 可维护版
+# Saltline · React + TypeScript 可维护版
 
 这是原 `saltline-fable-5.2` 浏览器 FPS 的独立重构目录。原目录保留，运行本项目不需要读取原来的 `index.html`；原版仅在对照测试中作为基准。
 
-项目使用 React 19、Vite 和 Three.js r180：React 管理应用挂载、菜单、设置及结算界面，独立游戏模块管理三维画面、输入、物理、武器、敌人、音频和高频 HUD 更新。游戏没有通过 iframe、整页 HTML 注入或执行原压缩脚本来运行。
+项目使用 React 19、TypeScript、Vite 和 Three.js r180：React 管理应用挂载、菜单、设置及结算界面，独立游戏模块管理三维画面、输入、物理、武器、敌人、音频和高频 HUD 更新。游戏没有通过 iframe、整页 HTML 注入或执行原压缩脚本来运行。
+
+React 界面、启动生命周期、帧循环、共享工具及常用配置使用 TypeScript，启用 `strict` 检查。底层渲染、物理、关卡、音频及玩法控制器继续使用 JavaScript；两层通过 `src/game/types.ts`、`src/ui/types.ts` 和少量 `.d.ts` 声明衔接。此次迁移保留原游戏行为，后续可按模块逐步补全类型。
 
 重构以保留原版算法、参数、着色器、程序化资源及交互为目标。启动生命周期、系统装配、帧循环和调试入口各自分开，玩家、武器及任务配置与对应功能放在同一目录，关键接口和行为约定附有中文注释。原文件是已经压缩的发布产物，无法完整恢复原作者的源码命名；底层程序化几何、音频合成等实现内部仍保留部分短变量。先从下方的阅读顺序进入，再按职责定位具体实现。
 
@@ -40,14 +42,14 @@ yarn preview
 
 | 目的                           | 入口                                                                                                       |
 | ------------------------------ | ---------------------------------------------------------------------------------------------------------- |
-| 理解 React 如何启动游戏        | `src/main.jsx` → `src/App.jsx` → `src/game/runtime/startGame.js`                                           |
-| 理解系统装配与每帧更新         | `src/game/runtime/bootGame.js` → `src/game/runtime/frameLoop.js`                                           |
-| 修改标题、暂停、死亡、结算界面 | `src/ui/MenuScreens.jsx`                                                                                   |
-| 修改设置或按键说明             | `src/ui/SettingsPanel.jsx`、`src/ui/Controls.jsx`、`src/ui/settings.js`                                    |
+| 理解 React 如何启动游戏        | `src/main.tsx` → `src/App.tsx` → `src/game/runtime/startGame.ts`                                           |
+| 理解系统装配与每帧更新         | `src/game/runtime/bootGame.ts` → `src/game/runtime/frameLoop.ts`                                           |
+| 修改标题、暂停、死亡、结算界面 | `src/ui/MenuScreens.tsx`                                                                                   |
+| 修改设置或按键说明             | `src/ui/SettingsPanel.tsx`、`src/ui/Controls.tsx`、`src/ui/settings.ts`                                    |
 | 修改配色、排版、移动端布局     | `src/styles/game.css`                                                                                      |
-| 理解任务、增援和胜负流程       | `src/game/gameplay/gameFlow.js`；数值和文案见同目录的 `missionConfig.js`、`radioLines.js`                  |
-| 修改移动、跳跃、生命恢复、镜头 | `src/game/player/tuning.js`；行为见 `src/game/player/player.js`，基础体型/FOV 见 `src/game/config.js`      |
-| 修改武器、伤害与敌人           | `src/game/weapon/tuning.js`、`src/game/weapon/weapon.js`、`src/game/combat/combat.js`、`src/game/enemies/` |
+| 理解任务、增援和胜负流程       | `src/game/gameplay/gameFlow.js`；数值和文案见同目录的 `missionConfig.ts`、`radioLines.ts`                  |
+| 修改移动、跳跃、生命恢复、镜头 | `src/game/player/tuning.ts`；行为见 `src/game/player/player.js`，基础体型/FOV 见 `src/game/config.ts`      |
+| 修改武器、伤害与敌人           | `src/game/weapon/tuning.ts`、`src/game/weapon/weapon.js`、`src/game/combat/combat.js`、`src/game/enemies/` |
 | 修改场景与视觉效果             | `src/game/level/`、`src/game/materials/`、`src/game/render/`                                               |
 
 完整目录导航与更新顺序见 [架构说明](docs/ARCHITECTURE.md) 和 [维护指南](docs/MAINTENANCE.md)。本次检查结果见 [迁移验证记录](docs/VERIFICATION.md)。
@@ -63,16 +65,19 @@ WASD 移动，鼠标观察，左键射击，右键瞄准，R 换弹，按住 E �
 ## 验证与维护命令
 
 ```powershell
-npm run format:check
-npm run check:architecture
-npm run test:unit
-npm run build
-npm test
+yarn typecheck
+yarn format:check
+yarn check:architecture
+yarn test:unit
+yarn build
+yarn test
 ```
 
-`npm test` 运行 Playwright 原版/React 对照测试，会自动启动并在测试后关闭所需服务器（已运行的服务器会复用）。原版仍由 `../saltline-fable-5.2/index.html` 只读提供。本机需要安装 Google Chrome，测试配置使用 `channel: 'chrome'`。
+`yarn typecheck` 只检查类型，不生成文件；`yarn build` 会先检查类型，通过后才输出生产包。开发时 Vite 负责快速转换代码，终端没有构建错误不代表类型检查通过。`.ts/.tsx` 使用严格模式，历史 `.js` 暂不启用 `checkJs`；类型声明描述调用契约，不能替代引擎的运行测试。
 
-`npm run check:architecture` 检查源码本地导入目标、导出名称和循环依赖。`npm run test:unit` 执行所有 `tests/*.test.mjs`，覆盖资源清理、帧循环等模块契约；`npm test` 执行浏览器对照与生命周期检查。
+`yarn test` 运行 Playwright 原版/React 对照测试，会自动启动并在测试后关闭所需服务器（已运行的服务器会复用）。原版仍由 `../saltline-fable-5.2/index.html` 只读提供。本机需要安装 Google Chrome，测试配置使用 `channel: 'chrome'`。
+
+`yarn check:architecture` 检查源码本地导入目标、导出名称和循环依赖。`yarn test:unit` 执行所有 `tests/*.test.mjs`，覆盖资源清理、帧循环等模块契约；`yarn test` 执行浏览器对照与生命周期检查。
 
 可用 `ORIGINAL_URL`、`REACT_URL` 环境变量指定已有服务器。测试覆盖菜单与设置、核心任务流程、移动端触摸入口、展示与性能入口、真实音频生成和固定条件的画面对照，并检查启动中及运行后的卸载清理；实际断言和覆盖范围见 `tests/regression.spec.js`、`tests/lifecycle.spec.js`。报告位于 `playwright-report/`，失败追踪和画面对照文件位于 `test-results/`。
 

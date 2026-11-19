@@ -3,7 +3,7 @@
  * 先构建关卡，再调用 physics.build；combat 和敌人 AI 会共用射线/视线数据。坐标、距离均沿用世界单位。
  */
 import { Vector3 } from 'three';
-import { WORLD_BOUNDS } from '../config.js';
+import { WORLD_BOUNDS } from '../config.ts';
 var u1 = 0.42,
   Ls = 0.5,
   Ya = -40,

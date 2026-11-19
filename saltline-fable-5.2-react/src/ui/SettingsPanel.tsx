@@ -1,12 +1,20 @@
-import { ControlsGuide } from './Controls.jsx';
-import { QUALITY_OPTIONS } from './settings.js';
+import type { MenuState, GameSettings, ChangeSetting } from './types.ts';
+import type { QualityName } from '../game/config.ts';
+interface SettingsPanelProps {
+  state: MenuState;
+  settings: GameSettings;
+  qualityName?: QualityName;
+  changeSetting: ChangeSetting;
+}
+import { ControlsGuide } from './Controls.tsx';
+import { QUALITY_OPTIONS } from './settings.ts';
 
 /**
  * 受控设置面板：滑块把数值交给 changeSetting，由适配器统一应用与保存。
  * 按钮通过 data-* 交给宿主委托，保持全屏/音频操作处于原生点击上下文。
  * settings.volume 使用 0～1，音量滑块显示 0～100；fov 的单位为度。
  */
-export function SettingsPanel({ state, settings, qualityName, changeSetting }) {
+export function SettingsPanel({ state, settings, qualityName, changeSetting }: SettingsPanelProps) {
   // auto 没有独立画质按钮，当前设备实际选中的档位用于高亮与说明。
   const selectedQuality = settings.quality === 'auto' ? qualityName : settings.quality;
   return (

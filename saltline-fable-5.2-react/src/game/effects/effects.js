@@ -38,7 +38,7 @@ import {
   ZeroFactor,
 } from 'three';
 import { defineExports } from '../core/defineExports.js';
-import { SKY_COLORS, SUN } from '../config.js';
+import { SKY_COLORS, SUN } from '../config.ts';
 import { beveledBoxGeometry } from '../core/geometry.js';
 var Sv = {};
 defineExports(Sv, {

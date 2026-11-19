@@ -1,6 +1,7 @@
+import type { DeathResult, DebriefResult } from './types.ts';
 /** 菜单页面：标题、暂停、死亡、结算和地点卡；显示状态由 createMenus 管理。 */
-import { ControlsLegend } from './Controls.jsx';
-import { formatTime } from './settings.js';
+import { ControlsLegend } from './Controls.tsx';
+import { formatTime } from './settings.ts';
 
 // data-s 对应菜单状态，data-act 交给 createMenus 路由；页面只描述内容与结构。
 export function TitleScreen() {
@@ -40,7 +41,7 @@ export function TitleScreen() {
 }
 
 /** @param {{lookMode: string}} props 输入系统提供的当前视角控制提示。 */
-export function PauseScreen({ lookMode }) {
+export function PauseScreen({ lookMode }: { lookMode: string }) {
   return (
     <section className="m-screen m-card" data-s="paused" aria-label="Paused">
       <div className="m-k">Operation on hold</div>
@@ -67,7 +68,7 @@ export function PauseScreen({ lookMode }) {
 }
 
 /** @param {{result: {time: number, relays: number, total: number}}} props 时间单位为秒。 */
-export function DeathScreen({ result }) {
+export function DeathScreen({ result }: { result: DeathResult }) {
   return (
     <section className="m-screen m-card m-dead" data-s="dead" aria-label="Signal lost">
       <div className="m-k">Breacher down</div>
@@ -97,7 +98,7 @@ export function DeathScreen({ result }) {
  * 结算数值与评级由任务状态机计算；accuracy 为 0～1，未开火时为 null。
  * 组件只负责显示，不在 React 更新时重新计算得分。
  */
-export function DebriefScreen({ result }) {
+export function DebriefScreen({ result }: { result: DebriefResult }) {
   return (
     <section className="m-screen m-card m-debrief" data-s="complete" aria-label="Debrief">
       <div className="m-k">Berth 4 · Debrief</div>
@@ -136,7 +137,7 @@ export function DebriefScreen({ result }) {
 }
 
 // 介绍阶段的位置字幕卡始终保留节点，用 class 切换以沿用 CSS 过渡。
-export function LocationCard({ visible }) {
+export function LocationCard({ visible }: { visible: boolean }) {
   return (
     <div className={`loc-card${visible ? ' on' : ''}`} aria-hidden="true">
       <i />

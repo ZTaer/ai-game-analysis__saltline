@@ -1,13 +1,13 @@
-import { listen, defer } from '../runtime/resources.js';
+import { listen, defer } from '../runtime/resources.ts';
 /**
  * Saltline / gameplay/gameFlow
  * 从原版游戏按职责提取；保留原始算法、参数、着色器与执行顺序。
  */
 import { Vector3 } from 'three';
-import { createMenus } from '../../ui/createMenus.jsx';
-import { clamp, damp, saturate, smoothstep } from '../core/math.js';
-import { GAME_CONFIG, COMPASS_DIRECTIONS } from './missionConfig.js';
-import { RADIO_LINES } from './radioLines.js';
+import { createMenus } from '../../ui/createMenus.tsx';
+import { clamp, damp, saturate, smoothstep } from '../core/math.ts';
+import { GAME_CONFIG, COMPASS_DIRECTIONS } from './missionConfig.ts';
+import { RADIO_LINES } from './radioLines.ts';
 
 /**
  * 任务状态机：title → intro → playing → paused / dead / complete。

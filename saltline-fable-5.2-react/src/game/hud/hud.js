@@ -1,4 +1,4 @@
-import { listen } from '../runtime/resources.js';
+import { listen } from '../runtime/resources.ts';
 /**
  * Saltline / hud/hud
  * 从原版游戏按职责提取；保留原始算法、参数、着色器与执行顺序。

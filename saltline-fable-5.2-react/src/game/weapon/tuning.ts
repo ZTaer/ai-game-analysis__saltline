@@ -1,3 +1,8 @@
+/** 武器局部空间中的三轴位移与欧拉角。 */
+export interface WeaponPose {
+  p: [number, number, number];
+  r: [number, number, number];
+}
 import { mi as RIFLE_INFO } from './rifleGeometry.js';
 
 /**
@@ -12,19 +17,19 @@ export const BULLET_RANGE = 300; // 世界射线最大长度（米）。
 
 // p 为武器局部位移（米），r 为局部欧拉旋转（弧度）。
 // 这些是动画混合的目标姿态，不是玩家相机的世界坐标。
-export const HIP_POSE = {
+export const HIP_POSE: WeaponPose = {
   p: [0.118, -0.122, -0.275],
   r: [0.034, 0.085, -0.03],
 };
-export const AIM_POSE = {
+export const AIM_POSE: WeaponPose = {
   p: [0, -RIFLE_INFO.sightY, -0.135],
   r: [0, 0, 0],
 };
-export const SPRINT_POSE = {
+export const SPRINT_POSE: WeaponPose = {
   p: [-0.035, 0.004, 0.03],
   r: [-0.04, 0.62, 0.26],
 };
-export const RELOAD_POSE = {
+export const RELOAD_POSE: WeaponPose = {
   p: [-0.03, 0.1, -0.02],
   r: [0.46, 0.22, -0.8],
 };

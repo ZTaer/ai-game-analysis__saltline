@@ -4,47 +4,55 @@
 
 | 要修改的内容                         | 文件与入口                                                                          | 需要一起检查                                                    |
 | ------------------------------------ | ----------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| 标题、暂停、死亡、结算文案           | `src/ui/MenuScreens.jsx`                                                            | 窄屏排版、焦点恢复、`data-act` 按钮行为                         |
-| 操作说明                             | `src/ui/Controls.jsx`                                                               | 与 `game/input/input.js` 的实际映射一致                         |
-| 增加或修改设置                       | `src/ui/SettingsPanel.jsx`、`src/ui/settings.js`                                    | 默认值、读盘校验、即时应用、重载持久化；保持旧 key 兼容         |
+| 标题、暂停、死亡、结算文案           | `src/ui/MenuScreens.tsx`                                                            | 窄屏排版、焦点恢复、`data-act` 按钮行为                         |
+| 操作说明                             | `src/ui/Controls.tsx`                                                               | 与 `game/input/input.js` 的实际映射一致                         |
+| 增加或修改设置                       | `src/ui/SettingsPanel.tsx`、`src/ui/settings.ts`                                    | 默认值、读盘校验、即时应用、重载持久化；保持旧 key 兼容         |
 | 界面颜色、尺寸、响应式布局           | `src/styles/game.css`                                                               | 安全区域、触摸角落、字体加载、reduced-motion 分支               |
-| 生命、移动、冲刺、重力、跳跃、后坐力 | `game/player/tuning.js` 的 `PLAYER_TUNING`；行为见 `game/player/player.js`          | 碰撞、楼梯/边缘、蹲伏空间、瞄准移动、回血延迟                   |
-| 默认视野和玩家体型                   | `game/config.js` 的 `PLAYER_CONFIG`                                                 | HUD 投影、碰撞胶囊、武器相机；已有存储的 FOV 会覆盖默认设置     |
-| 弹匣、备弹、射速、伤害、换弹         | `game/weapon/tuning.js`；行为见 `weapon.js`，命中计算见 `game/combat/combat.js`     | HUD、空仓换弹、瞄准、命中统计及音效事件                         |
+| 生命、移动、冲刺、重力、跳跃、后坐力 | `game/player/tuning.ts` 的 `PLAYER_TUNING`；行为见 `game/player/player.js`          | 碰撞、楼梯/边缘、蹲伏空间、瞄准移动、回血延迟                   |
+| 默认视野和玩家体型                   | `game/config.ts` 的 `PLAYER_CONFIG`                                                 | HUD 投影、碰撞胶囊、武器相机；已有存储的 FOV 会覆盖默认设置     |
+| 弹匣、备弹、射速、伤害、换弹         | `game/weapon/tuning.ts`；行为见 `weapon.js`，命中计算见 `game/combat/combat.js`     | HUD、空仓换弹、瞄准、命中统计及音效事件                         |
 | 枪械造型与材质                       | `game/weapon/rifleGeometry.js`、`hands.js`、`materials.js`、`decals.js`、`optic.js` | 原始握持点、准星位置、枪口位置、动画与室内外湿润度              |
 | 敌人生命、速度和行为                 | `game/enemies/enemies.js` 的 `ENEMY_TUNING`，以及 `gull.js`、`hound.js`             | 寻路、视线、巡逻/警戒、攻击、击杀、残骸与对象复用               |
-| 中继交互、增援波次与任务节奏         | `game/gameplay/missionConfig.js` 的 `GAME_CONFIG`；流程见 `gameFlow.js`             | 三个中继、交互朝向/距离、进度回退、增援上限、死亡重试、撤离评分 |
-| 无线电台词                           | `game/gameplay/radioLines.js` 的 `RADIO_LINES`                                      | 台词触发阶段、字幕显示时长与 HUD 排版                           |
+| 中继交互、增援波次与任务节奏         | `game/gameplay/missionConfig.ts` 的 `GAME_CONFIG`；流程见 `gameFlow.js`             | 三个中继、交互朝向/距离、进度回退、增援上限、死亡重试、撤离评分 |
+| 无线电台词                           | `game/gameplay/radioLines.ts` 的 `RADIO_LINES`                                      | 台词触发阶段、字幕显示时长与 HUD 排版                           |
 | 中继位置、出生点、撤离点或港口布局   | `game/level/level.js`                                                               | 碰撞/导航、玩家可达性、镜头路径、标记与敌人出生点               |
 | 音效或音乐                           | `game/audio/soundBank.js` → 对应 `sounds.js`/`music.js` 生成器                      | 音量峰值、并发数、空间化、暂停、重启与声音生成耗时              |
-| 渲染、阴影、反射、后处理             | `game/render/renderer.js`、`game/config.js`                                         | 所有画质档位、Shader 编译、室内外、移动端、显存释放             |
+| 渲染、阴影、反射、后处理             | `game/render/renderer.js`、`game/config.ts`                                         | 所有画质档位、Shader 编译、室内外、移动端、显存释放             |
 | 材质、水面、雨雾或爆炸               | `game/materials/`、`ground/`、`effects/`                                            | GLSL 注入点、透明排序、深度、随机性、原版截图对照               |
-| 启动、重启与卸载                     | `game/runtime/startGame.js`、`resources.js`                                         | 启动中销毁、运行后销毁、监听/音频/GPU 释放和 React 卸载         |
-| 新增系统或改变每帧行为               | `game/runtime/bootGame.js`、`frameLoop.js`                                          | 创建依赖、更新顺序、暂停规则、`input.endFrame()` 时机           |
-| 加载/失败提示与调试入口              | `game/runtime/bootScreen.js`、`diagnostics.js`、`debug/`                            | 原 URL 参数、展示模式、固定相机和性能巡游                       |
+| 启动、重启与卸载                     | `game/runtime/startGame.ts`、`resources.ts`                                         | 启动中销毁、运行后销毁、监听/音频/GPU 释放和 React 卸载         |
+| 新增系统或改变每帧行为               | `game/runtime/bootGame.ts`、`frameLoop.ts`                                          | 创建依赖、更新顺序、暂停规则、`input.endFrame()` 时机           |
+| 加载/失败提示与调试入口              | `game/runtime/bootScreen.ts`、`diagnostics.ts`、`debug/`                            | 原 URL 参数、展示模式、固定相机和性能巡游                       |
 
 表中 `game/` 路径均位于 `src/` 下。优先搜索具名入口或配置对象，再阅读局部实现；不要从打包后的 `dist/assets/` 修改功能。
 
-例如调整步行速度时先改 `player/tuning.js` 的 `walk`；调整步行如何响应输入则读 `player/player.js`。调整步枪基础伤害时改 `weapon/tuning.js` 的 `BULLET_DAMAGE`，不要误改 `combat.playerShot()` 给未传入伤害的调用者提供的默认值。后者负责射线、弱点倍率和命中处理，武器控制器会显式传入自己的伤害。
+例如调整步行速度时先改 `player/tuning.ts` 的 `walk`；调整步行如何响应输入则读 `player/player.js`。调整步枪基础伤害时改 `weapon/tuning.ts` 的 `BULLET_DAMAGE`，不要误改 `combat.playerShot()` 给未传入伤害的调用者提供的默认值。后者负责射线、弱点倍率和命中处理，武器控制器会显式传入自己的伤害。
 
 设置默认值还受持久化影响：已经保存的 `saltline.settings.v1` 会覆盖默认项。验证新默认值时使用没有旧设置的浏览器上下文，同时保留带旧设置的兼容性检查。
 
 ## 一次修改的建议步骤
 
 1. 启动开发服务器，复现需要修改的行为，记录使用的 URL、画质和窗口尺寸。
-2. 在负责该行为的模块中修改。新游戏事件同时更新生产者和订阅者；新设置补齐读取、校验、应用与显示。
-3. 执行 `npm run format:check`、`npm run check:architecture`、`npm run test:unit` 和 `npm run build`。架构检查定位缺失的本地导入/导出与循环依赖；单元检查执行所有 `tests/*.test.mjs`。需要整理格式时使用 `npm run format`。
-4. 执行 `npm test`（自动启动或复用原版及 React 服务器）；查看浏览器生命周期、状态对照和画面差异报告。
+2. 在负责该行为的模块中修改。新游戏事件同时更新生产者和订阅者；新设置先补 `src/ui/types.ts` 的 `GameSettings`，再补齐读取、校验、应用与显示。
+3. 执行 `yarn typecheck`、`yarn format:check`、`yarn check:architecture`、`yarn test:unit` 和 `yarn build`。构建包含类型检查；架构检查定位缺失的本地导入/导出与运行时循环依赖，忽略纯类型引用；单元检查执行所有 `tests/*.test.mjs`。需要整理格式时使用 `yarn format`。
+4. 执行 `yarn test`（自动启动或复用原版及 React 服务器）；查看浏览器生命周期、状态对照和画面差异报告。
 5. 对此次修改相关的实际操作进行人工验收，再记录变更。单纯重命名应保持原版结果；有意修改玩法时，明确更新相应断言并说明差异来源。
 
-`vite.config.js` 对 `src/game/` 的编辑触发整页刷新，重建相互依赖的 GPU/音频资源。React 界面文件使用 React 开发工作流。不要为了保留热更新状态跳过游戏的初始化或销毁步骤。
+`vite.config.ts` 对 `src/game/` 的编辑触发整页刷新，重建相互依赖的 GPU/音频资源。React 界面文件使用 React 开发工作流。不要为了保留热更新状态跳过游戏的初始化或销毁步骤。
+
+## 继续迁移或新增 TypeScript 模块
+
+新 React 组件使用 `.tsx`，普通逻辑与配置使用 `.ts`。类型导入用 `import type`；本地导入写明实际扩展名，与当前 Vite 和 Node 单元测试保持一致。类型放在所属功能目录，跨引擎/界面的契约放在 `game/types.ts`，菜单专用类型放在 `ui/types.ts`。
+
+现阶段 `allowJs: true`、`checkJs: false` 是明确的迁移边界，旧引擎 `.js` 继续执行原逻辑。以后转换一个 JS 模块时，逐个补参数、返回值和内部状态类型，更新所有导入路径；如果存在同名 `.d.ts`，将声明合并到实现后移除重复声明。不要使用 `@ts-nocheck` 或大范围 `any` 隐藏错误。保留 `.js` 的模块如果增加公开方法，也要同步相关边界声明。
+
+接口说明用中文注释记录单位、所有权与调用顺序，具体类型由 TS 声明表达。`yarn typecheck` 检查源码和 Vite 配置；现有浏览器用例和 Node 单元测试仍为 JS/MJS，验证执行行为。Node 通过内置类型擦除运行单元测试，因此 TS 源码只使用可擦除语法（`erasableSyntaxOnly`），不引入需要额外运行时转换的 `enum` 等语法。
 
 ## 模块与注释的维护规则
 
-- 配置优先与功能放在一起：玩家参数进 `player/tuning.js`，武器参数进 `weapon/tuning.js`，任务数值和台词分别进 `gameplay/missionConfig.js`、`radioLines.js`。共享世界与画质配置才放进 `game/config.js`。
+- 配置优先与功能放在一起：玩家参数进 `player/tuning.ts`，武器参数进 `weapon/tuning.ts`，任务数值和台词分别进 `gameplay/missionConfig.ts`、`radioLines.ts`。共享世界与画质配置才放进 `game/config.ts`。
 - 新工厂或关键方法用 JSDoc 写清参数、返回接口、时间/距离/角度单位，以及是否创建或持有需要释放的资源。中文说明重点解释原因、状态变化和调用约束，避免逐行翻译代码。
 - 事件是同步调用，载荷可能包含共享对象或向量。先查生产者再改订阅者；需要异步保存位置等瞬时数据时显式复制。不要随意把回调改成延迟执行。
-- 系统创建和每帧更新都有顺序约束。保留 `bootGame.js` 的装配顺序、`frameLoop.js` 的输入消费与清理顺序；新的暂停规则应有对应的帧循环检查。
+- 系统创建和每帧更新都有顺序约束。保留 `bootGame.ts` 的装配顺序、`frameLoop.ts` 的输入消费与清理顺序；新的暂停规则应有对应的帧循环检查。
 - 相同种子只有在随机调用顺序相同时才保持相同序列。结构整理不应增加、删除或调换随机调用，也不要并行创建共享随机数和场景的系统；几何辅助方法是否原地修改对象应先看注释。
 
 已有代码中的中文注释和接口说明是这些约定的就近入口。功能发生有意变化时同时更新说明、相关断言和验证记录，避免注释继续描述旧行为。
@@ -53,7 +61,7 @@
 
 Three.js 固定为 `0.180.0`（r180），与原 HTML 内嵌版本一致。项目包含依赖 Three.js shader chunks 和材质编译流程的自定义着色器；不要把升级 Three.js 当作无行为影响的依赖更新。升级应单独进行，并检查材质、阴影、水面、枪械镜片及全部后处理。
 
-其余依赖也使用明确版本和锁文件。修改依赖后一起提交 `package.json` 与 `package-lock.json`，并重新构建和回归。Google Fonts 保留原外部地址，离线或网络阻断时字体回退不是场景模块的错误。
+其余依赖也使用明确版本和锁文件。修改依赖后一起提交 `package.json`、`yarn.lock` 与 `package-lock.json`，并重新构建和回归；Yarn 使用 `yarn install --immutable` 核对锁文件。`@types/react`、`@types/react-dom` 与 `@types/three` 应匹配运行库的主版本，新增类型依赖不应顺带升级游戏运行库。Google Fonts 保留原外部地址，离线或网络阻断时字体回退不是场景模块的错误。
 
 ## 调试入口
 
@@ -114,6 +122,6 @@ window.__setShot({ cam: '' }); // 解除固定相机
 
 ## 新增副作用时的清理
 
-运行资源工具位于 `src/game/runtime/resources.js`。使用 `listen(target, type, callback, options)` 注册需销毁的 DOM/窗口事件，使用 `defer(callback, delay)` 注册运行期延迟任务，音频上下文交由 `ownAudioContext()` 管理。新的 GPU 资源或第三方实例也要注册对应清理。
+运行资源工具位于 `src/game/runtime/resources.ts`。使用 `listen(target, type, callback, options)` 注册需销毁的 DOM/窗口事件，使用 `defer(callback, delay)` 注册运行期延迟任务，音频上下文交由 `ownAudioContext()` 管理。新的 GPU 资源或第三方实例也要注册对应清理。
 
 React 菜单已有独立的 `dispose()`，释放其全屏事件、焦点计时器和 React 根。不要复用已经销毁的菜单对象，或在异步回调里向旧实例写入状态。若添加异步加载，应在完成后检查实例是否仍有效，避免卸载期间又创建资源。

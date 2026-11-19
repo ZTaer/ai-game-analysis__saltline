@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { beginResources, defer, listen, ownAudioContext } from '../src/game/runtime/resources.js';
+import { beginResources, defer, listen, ownAudioContext } from '../src/game/runtime/resources.ts';
 
 test('disposing a runtime removes listeners, cancels callbacks, and closes its audio context once', async () => {
   const resources = beginResources();

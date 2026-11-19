@@ -12,7 +12,7 @@ import {
   Shape,
   ShapeGeometry,
 } from 'three';
-import { SKY_COLORS, SUN } from '../config.js';
+import { SKY_COLORS, SUN } from '../config.ts';
 function createOpticGlass(i, e) {
   let t = new Shape();
   (i.forEach((r, a) => (a ? t.lineTo(r[0], r[1]) : t.moveTo(r[0], r[1]))), t.closePath());

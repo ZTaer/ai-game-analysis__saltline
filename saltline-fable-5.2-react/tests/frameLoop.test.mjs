@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { startFrameLoop } from '../src/game/runtime/frameLoop.js';
+import { startFrameLoop } from '../src/game/runtime/frameLoop.ts';
 
 // 无 GPU 的流程测试：固定时钟，观察各子系统被调用的实际顺序和时间步。
 function createHarness(t, { state = 'playing', params = {}, getShotCamera = () => null } = {}) {

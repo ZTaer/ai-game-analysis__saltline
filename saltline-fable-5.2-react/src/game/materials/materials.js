@@ -1,4 +1,4 @@
-import { defer } from '../runtime/resources.js';
+import { defer } from '../runtime/resources.ts';
 /**
  * 程序化材质库：生成纹理并扩展材质 Shader，供地图、物件和武器共享。
  * 阅读入口 createMaterials；get 返回可复用材质。纹理生成顺序、采样参数与 GLSL 文本影响画面，不与注释整理混改。

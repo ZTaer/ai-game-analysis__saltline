@@ -1,4 +1,4 @@
-import { listen } from '../runtime/resources.js';
+import { listen } from '../runtime/resources.ts';
 /**
  * 画面管线：创建 Three.js 场景、世界/武器相机、天空、阴影、环境探针和后处理。
  * 阅读入口 createRenderer；返回 frame / resize / setQuality / onLevelReady。ShaderChunk 注入依赖固定的 Three r180。
@@ -49,7 +49,7 @@ import {
   WebGLRenderer,
 } from 'three';
 import { defineExports } from '../core/defineExports.js';
-import { PLAYER_CONFIG, QUALITY_PRESETS, SKY_COLORS, SUN, vf, zc } from '../config.js';
+import { PLAYER_CONFIG, QUALITY_PRESETS, SKY_COLORS, SUN, vf, zc } from '../config.ts';
 import { beveledBoxGeometry, boxGeometry, createMesh } from '../core/geometry.js';
 var Vg = {};
 defineExports(Vg, {

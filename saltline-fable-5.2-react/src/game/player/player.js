@@ -3,9 +3,9 @@
  * 从原版游戏按职责提取；保留原始算法、参数、着色器与执行顺序。
  */
 import { Euler, Vector3 } from 'three';
-import { PLAYER_CONFIG, WORLD_BOUNDS } from '../config.js';
-import { clamp, damp, lerp, saturate, smoothstep } from '../core/math.js';
-import { PLAYER_TUNING, JUMP_SPEED } from './tuning.js';
+import { PLAYER_CONFIG, WORLD_BOUNDS } from '../config.ts';
+import { clamp, damp, lerp, saturate, smoothstep } from '../core/math.ts';
+import { PLAYER_TUNING, JUMP_SPEED } from './tuning.ts';
 
 /**
  * 创建玩家状态及其逐帧控制器；输入、物理、镜头和关卡需已由运行入口创建。

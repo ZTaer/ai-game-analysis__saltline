@@ -1,4 +1,4 @@
-import { startGame } from '../../src/game/runtime/startGame.js';
+import { startGame } from '../../src/game/runtime/startGame.ts';
 import '../../src/styles/game.css';
 
 window.runtimeHarness = {

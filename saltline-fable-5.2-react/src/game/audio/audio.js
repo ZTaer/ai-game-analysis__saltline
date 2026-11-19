@@ -1,4 +1,4 @@
-import { ownAudioContext, defer, listen } from '../runtime/resources.js';
+import { ownAudioContext, defer, listen } from '../runtime/resources.ts';
 /**
  * Web Audio 运行态：音效缓存、混响、空间化、混音和游戏事件订阅。
  * createAudio 返回播放/更新接口；ready 仅表示后台合成队列已处理，不等于用户已授权播放。

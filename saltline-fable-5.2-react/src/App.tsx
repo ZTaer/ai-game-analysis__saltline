@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { startGame } from './game/runtime/startGame.js';
+import { startGame } from './game/runtime/startGame.ts';
 
 /**
  * React 与游戏引擎的生命周期边界。

@@ -1,4 +1,4 @@
-import { defer } from '../runtime/resources.js';
+import { defer } from '../runtime/resources.ts';
 /**
  * 地面与水面：湿地、积水反射、海面波浪、雨滴及相关 Shader 更新。
  * 阅读入口 createGround；地面查询供脚步与玩家反馈使用。顶部波向归一化是初始化步骤，必须保留。
@@ -39,7 +39,7 @@ import {
   WebGLRenderTarget,
 } from 'three';
 import { defineExports } from '../core/defineExports.js';
-import { SKY_COLORS, SUN, WORLD_BOUNDS } from '../config.js';
+import { SKY_COLORS, SUN, WORLD_BOUNDS } from '../config.ts';
 var vv = {};
 defineExports(vv, {
   create: () => createGround,

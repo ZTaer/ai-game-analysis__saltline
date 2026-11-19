@@ -1,6 +1,6 @@
 /** 子系统展示入口与占位输入/玩家。仅 ?show=... 使用；普通游戏仍创建真实子系统。 */
 import { Vector3 } from 'three';
-import { PLAYER_CONFIG } from '../../config.js';
+import { PLAYER_CONFIG } from '../../config.ts';
 import { Vg as renderShowcase } from '../../render/renderer.js';
 import { qg as materialShowcase } from '../../materials/materials.js';
 import { $g as propsShowcase } from '../../props/props.js';

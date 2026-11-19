@@ -1,16 +1,17 @@
 {
   "name": "saltline-fable-5.2-react",
   "version": "1.0.0",
-  "description": "Saltline FPS — React application with modular Three.js game systems",
+  "description": "Saltline FPS — React and TypeScript application with modular Three.js game systems",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "test": "playwright test",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test:unit": "node --test tests/*.test.mjs",
-    "check:architecture": "node scripts/check-architecture.mjs"
+    "test:unit": "node --experimental-strip-types --test tests/*.test.mjs",
+    "check:architecture": "node scripts/check-architecture.mjs",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
@@ -22,8 +23,13 @@
   },
   "devDependencies": {
     "@playwright/test": "1.65.1",
+    "@types/node": "24.19.2",
+    "@types/react": "19.2.0",
+    "@types/react-dom": "19.2.0",
+    "@types/three": "0.180.0",
     "@vitejs/plugin-react": "6.3.0",
     "prettier": "3.10.1",
+    "typescript": "5.9.3",
     "vite": "8.3.8"
   },
   "private": true,

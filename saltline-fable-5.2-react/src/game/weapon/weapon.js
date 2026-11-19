@@ -12,8 +12,8 @@ import {
   Quaternion,
   Vector3,
 } from 'three';
-import { vf as WORLD_LAYER, zc as VIEWMODEL_LAYER } from '../config.js';
-import { clamp, damp, lerp, saturate } from '../core/math.js';
+import { vf as WORLD_LAYER, zc as VIEWMODEL_LAYER } from '../config.ts';
+import { clamp, damp, lerp, saturate } from '../core/math.ts';
 import { Kc as countTriangles, createRifleGeometry, mi as RIFLE_INFO } from './rifleGeometry.js';
 import { createHands } from './hands.js';
 import { createRifleDecals } from './decals.js';
@@ -31,7 +31,7 @@ import {
   RELOAD_POSE,
   TACTICAL_RELOAD_SECONDS,
   EMPTY_RELOAD_SECONDS,
-} from './tuning.js';
+} from './tuning.ts';
 var WeaponVector3 = Vector3,
   WeaponQuaternion = Quaternion,
   smoothBlend = (amount) => (

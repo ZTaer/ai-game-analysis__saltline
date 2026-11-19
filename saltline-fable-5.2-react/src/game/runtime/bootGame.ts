@@ -1,14 +1,26 @@
+import type { BootLifecycle, GameContext, ShowcaseInfo } from '../types.ts';
+type SubsystemKey =
+  | 'render'
+  | 'mats'
+  | 'level'
+  | 'backdrop'
+  | 'ground'
+  | 'fx'
+  | 'audio'
+  | 'weapon'
+  | 'enemies'
+  | 'hud';
 /**
  * 按依赖顺序组装游戏；本文件是系统创建顺序的唯一入口。
  * 先场景/材质、再世界/碰撞、再玩家/武器/敌人、最后任务与菜单。不要并行这些创建步骤：它们共享场景和随机序列。
  * 普通启动保持 title；shot/autostart 才调用 game.start({ skipIntro: true })。
  */
-import { defer } from './resources.js';
+import { defer } from './resources.ts';
 import * as THREE from 'three';
 import { PlaneGeometry, Vector3 } from 'three';
-import { selectQuality } from '../config.js';
-import { createEventBus } from '../core/events.js';
-import { createRandom } from '../core/random.js';
+import { selectQuality } from '../config.ts';
+import { createEventBus } from '../core/events.ts';
+import { createRandom } from '../core/random.ts';
 import { fallbacks } from '../core/fallbacks.js';
 import { createMesh } from '../core/geometry.js';
 import { createRenderer } from '../render/renderer.js';
@@ -31,7 +43,7 @@ import '../props/register.js';
 import { showcases, createShowcaseInput, createShowcasePlayer } from './debug/showcases.js';
 import { createBenchmark } from './debug/benchmark.js';
 import { createShotCamera } from './debug/shotCamera.js';
-import { startFrameLoop } from './frameLoop.js';
+import { startFrameLoop } from './frameLoop.ts';
 /**
  * @param {object} lifecycle 本实例的生命周期回调，不向 React 暴露引擎内部状态。
  * @param {() => void} lifecycle.assertActive 在异步阶段间检查是否已卸载。
@@ -40,7 +52,12 @@ import { startFrameLoop } from './frameLoop.js';
  * @param {{element: HTMLElement, update: (message: string, progress: number) => Promise<void>}} lifecycle.bootScreen
  * @returns {Promise<void>}
  */
-export async function bootGame({ assertActive, setContext, reportFatal, bootScreen }) {
+export async function bootGame({
+  assertActive,
+  setContext,
+  reportFatal,
+  bootScreen,
+}: BootLifecycle): Promise<void> {
   const updateBootProgress = bootScreen.update;
   const bootElement = bootScreen.element;
   let params = Object.fromEntries(new URLSearchParams(location.search)),
@@ -50,6 +67,7 @@ export async function bootGame({ assertActive, setContext, reportFatal, bootScre
     params.autostart = '1';
   }
   // 所有工厂共享同一个可逐步补齐的对象；工厂构造阶段不得使用尚未创建的系统。
+  // 此处是旧 JS 引擎的装配边界：完成后才交给帧循环，清理端始终按 BootContext 处理。
   let gameContext = {
     THREE: THREE,
     params: params,
@@ -62,7 +80,7 @@ export async function bootGame({ assertActive, setContext, reportFatal, bootScre
       real: 0,
     },
     quality: selectQuality(params.q || (params.shot ? 'test' : '')),
-  };
+  } as GameContext;
   setContext(gameContext);
   window.__G = gameContext;
   let showcaseName = params.show && showcases[params.show] ? params.show : null;
@@ -71,14 +89,22 @@ export async function bootGame({ assertActive, setContext, reportFatal, bootScre
   const setShot = shotController.setShot;
   window.__setShot = setShot;
   // label 是原加载接口保留的描述参数；key 决定上下文字段与可选降级工厂。
-  async function loadSubsystem(key, label, create, required = false) {
+  // JS 工厂和降级表在边界处断言返回契约，实际行为继续由浏览器回归约束。
+  async function loadSubsystem<K extends SubsystemKey>(
+    key: K,
+    label: string,
+    create: () => unknown,
+    required = false,
+  ) {
     let startedAt = performance.now();
     try {
-      gameContext[key] = await create();
+      gameContext[key] = (await create()) as GameContext[K];
     } catch (x) {
-      console.error(`[boot] module "${key}" failed: ${(x && x.stack) || x}`);
-      if (required || !fallbacks[key]) throw x;
-      gameContext[key] = fallbacks[key]();
+      console.error(
+        `[boot] module "${key}" failed: ${(x && (x as { stack?: unknown }).stack) || x}`,
+      );
+      if (required || !fallbacks[key as keyof typeof fallbacks]) throw x;
+      gameContext[key] = fallbacks[key as keyof typeof fallbacks]() as unknown as GameContext[K];
     }
     assertActive();
     let durationMs = performance.now() - startedAt;
@@ -147,11 +173,13 @@ export async function bootGame({ assertActive, setContext, reportFatal, bootScre
       update: () => false,
       start() {},
     };
-    let f = null;
+    let f: ShowcaseInfo | void | null = null;
     try {
       f = await showcases[showcaseName].showcase(gameContext);
     } catch (p) {
-      reportFatal(`showcase "${showcaseName}" threw: ${(p && p.stack) || p}`);
+      reportFatal(
+        `showcase "${showcaseName}" threw: ${(p && (p as { stack?: unknown }).stack) || p}`,
+      );
     }
     gameContext.showcaseInfo = f || {};
     if (f && f.cam) {
@@ -191,14 +219,16 @@ export async function bootGame({ assertActive, setContext, reportFatal, bootScre
     await updateBootProgress('Waking the Harbormaster', 0.82);
     await loadSubsystem('enemies', 'enemies', () => createEnemies(gameContext));
     await loadSubsystem('hud', 'hud', () => createHud(gameContext));
-    gameContext.game = createGame(gameContext);
+    gameContext.game = createGame(gameContext) as GameContext['game'];
   }
   // 阶段 4：环境探针与 Shader 预编译；音频非必需资源仍在后台逐批生成。
   await updateBootProgress('Waiting for first light', 0.92);
   try {
     await gameContext.render.onLevelReady();
   } catch (h) {
-    console.error('[boot] render.onLevelReady failed: ' + ((h && h.stack) || h));
+    console.error(
+      '[boot] render.onLevelReady failed: ' + ((h && (h as { stack?: unknown }).stack) || h),
+    );
   }
   const frameStats = {
     averageFrameSeconds: 0,
